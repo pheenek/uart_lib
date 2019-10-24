@@ -1,14 +1,5 @@
 
-#define F_CPU 16000000UL
-
-#include <avr/io.h>
-#include <util/delay.h>
-#include <stdio.h>
-
-// define some macros
-#define BAUD    9600                               // define baud
-#define MYUBRR  ((F_CPU/16/BAUD)-1)                  // set baud rate value for UBRR
-// #define MYUBRR  51
+#include "uart.h"
 
 // function to initialize UART
 void USART_Init(){
@@ -47,21 +38,5 @@ void sendString(char *data){
     }
     USART_Transmit('\r');
     USART_Transmit('\n');
-    
-}
-
-int main(){
-    USART_Init();
-    DDRB |= 1 << PINB0;
-    char *hi = "hello";
-    char myData[10];
-
-    while(1){
-        // USART_Transmit('b');
-        sprintf(myData, "sent: %s", hi);
-        sendString(myData);
-        PORTB ^= 1 << PINB0;
-        _delay_ms(1000);
-    }
     
 }
