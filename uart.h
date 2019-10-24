@@ -16,3 +16,5 @@ void USART_Transmit(unsigned char data);
 unsigned char USART_Receive(void);
 
 void sendString(char *data);
+
+void readString(char myString[], uint8_t maxLength);
